@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ information?.Title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="information">
+    <div class="backdrop">
+      <img *ngIf="information.Poster" [src]="information.Poster">
+    </div>
+    <div class="poster">
+      <img *ngIf="information.Poster" class="poster" [src]="information.Poster">
+      <img *ngIf="information.Poster" class="poster-effect" [src]="information.Poster">
+    </div>
+    <ion-card-header>
+      <ion-card-title>
+        <h3 class="title">{{ information.Title }}</h3>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <ion-item class="ion-no-padding">
+          <ion-label>{{ information.Year }}</ion-label>
+          <div class="stars">
+            <ion-icon [name]="information.imdbRating >= 2 ? 'star' : information.imdbRating >= 1 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="information.imdbRating >= 4 ? 'star' : information.imdbRating >= 3 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="information.imdbRating >= 6 ? 'star' : information.imdbRating >= 5 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="information.imdbRating >= 8 ? 'star' : information.imdbRating >= 7 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="information.imdbRating >= 10 ? 'star' : information.imdbRating >= 9 ? 'star-half' : 'star-outline'"></ion-icon>
+          </div>
+        </ion-item>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class='ion-text-justify'>
+      {{ information.Plot }}
+      <br>
+      <div *ngIf="information.Genre != 'N/A'"> 
+        <h2><b>Genres:</b></h2>
+        {{information.Genre}}
+      </div>
+      <div *ngIf="information.Director != 'N/A'">
+        <h2><b>Director:</b></h2>
+        {{ information.Director }}
+      </div>
+      <div *ngIf="information.Actors != 'N/A'">
+        <h2><b>Actors:</b></h2>
+        {{ information.Actors }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
